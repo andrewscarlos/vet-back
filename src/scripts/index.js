@@ -9,7 +9,7 @@ const insertPoliceAndRoles = async ()=>{
 const createMasterUser = async ()=>{
     const nome = 'H-vet-Resende';
     const email = 'andrews.knct@gmail.com';
-    const senha = 'hvetresende2021';
+    const senha = '123456';
     try{
         if(!await User.findOne({ nome })){
             const user = User({nome,email,senha})

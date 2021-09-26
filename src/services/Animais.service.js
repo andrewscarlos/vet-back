@@ -1,5 +1,6 @@
-const Animais = require('../model/animais')
-const PessoaService = require('../services/Pessoas.service')
+const Animais = require('../model/animais');
+const Pessoas = require('../model/pessoas');
+
 
 const index = async(req, res) =>{
     await Animais.find()
@@ -24,7 +25,25 @@ const show = async(req, res) =>{
 }
 
 const create = async(req, res) =>{
-    console.log(req.body)
+    const { cpf } =  req.body;
+    
+    const updatedPeople = await Pessoas.findOne({ cpf })
+
+    if(!updatedPeople){
+        res.status(400).json({error: 'Não existe uma pessoa com esse CPF'})
+    };
+
+    updatedPeople.animais.push(req.body)
+
+    const newPeole = {
+        ...updatedPeople._doc
+    }
+    
+    const pessoa = await Pessoas.findById(newPeole._id)
+   
+    const pessoaAtual = await pessoa.updateOne( newPeole, {new: true})
+    
+
     const animais = Animais(req.body)
     await animais.save()
     .then(response => {
