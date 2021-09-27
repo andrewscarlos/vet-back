@@ -5,10 +5,12 @@ const AnimaisSchema = new Schema({
     nome: { type: String, required: true },
     especie: { type: String},
     raca: { type: String },
+    cpf: {type: String},
     idade: { type: String,  },
-    genero: { type: String },
+    sexo: { type: String },
     pelagem: { type: String },
     temperamento: { type: String },
+    peso:{ type: String },
     
     
 }, {
