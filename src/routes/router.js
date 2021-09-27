@@ -8,7 +8,7 @@ const AnimaisService = require('../services/Animais.service')
 const UserService = require('../services/AuthUser.service')
 const RolesService = require('../services/Roles.service')
 const PermissionService = require('../services/Permission.service')
-
+const ProntuariosService = require('../services/Prontuarios.service')
 
 routes.post('/permission', PermissionService.create)
 routes.get('/permission', PermissionService.index)
@@ -34,6 +34,7 @@ routes.post('/animais', AnimaisService.create)
 routes.put('/animais/:id', AnimaisService.update)
 routes.delete('/animais/:id', AnimaisService.destroy)
 
+routes.post('/animais/prontuarios', ProntuariosService.create)
 
 
 

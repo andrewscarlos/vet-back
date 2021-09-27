@@ -11,7 +11,13 @@ const AnimaisSchema = new Schema({
     pelagem: { type: String },
     temperamento: { type: String },
     peso:{ type: String },
-    
+    prontuarios: {type: Array},
+    tratamentos: {type: Array},
+    alergias: {type: Array},
+    medicamentos: {type: Array},
+    vacinas: {type: Array},
+    vermifugos: {type: Array},
+    dados: {type: Array},
     
 }, {
     timestamps: true
