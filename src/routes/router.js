@@ -36,7 +36,7 @@ routes.put('/animais/:id', AnimaisService.update)
 routes.delete('/animais/:id', AnimaisService.destroy)
 
 routes.post('/animais/prontuarios', ProntuariosService.create)
-routes.put('/animais/prontuarios', ProntuariosService.updated)
+routes.patch('/animais/prontuarios', ProntuariosService.updated)
 
 routes.post('/animais/tratamentos', TratamentosService.create)
 

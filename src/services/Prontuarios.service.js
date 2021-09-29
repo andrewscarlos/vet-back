@@ -21,22 +21,32 @@ const create = async (req, res) => {
 };
 
 const updated = async (req, res) => {
-    console.log('vateu no update')
+    console.log('req. body', req.body)
     const { idAnimal, idDoProntuario } = req.body;
     const prontuario = Prontuarios(req.body)
-
     const animail = await Animais.findById({ _id: idAnimal });
-
+    
 
 
     animail.prontuarios.map(el => {
         if (el._id == idDoProntuario) {
-            el = {el, ...prontuario}
+            el.peso = prontuario.peso || '',
+            el.idade = prontuario.idade || '',
+            el.descricao = prontuario.descricao || '',
+            el.progresso = prontuario.progresso || '',
+            el.resultado = prontuario.resultado || '',
+            el.temperatura = prontuario.temperatura || '',
+            el.frequenciaRespiratoria = prontuario.frequenciaRespiratoria || '',
+            el.frequenciaCardiaca = prontuario.frequenciaCardiaca || '', 
+            el.tempoPreenchimentoCapilar = prontuario.tempoPreenchimentoCapilar || '',
+            el.mucosas = prontuario.mucosas || '',
+            el.hidratacao = prontuario.hidratacao || '',
+            el.ectoparasitos = prontuario.ectoparasitos || '',
+            el.exameFisico = prontuario.exameFisico || ''
         }
     });
-    console.log('animail',animail)
+    
     await animail.updateOne(animail, { new: true })
-    await Prontuarios.updateOne(prontuario, { new: true })
     return res.status(200).json({ msg: 'Atualizado com sucesso' })
 }
 
