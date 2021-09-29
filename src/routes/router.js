@@ -10,6 +10,7 @@ const RolesService = require('../services/Roles.service')
 const PermissionService = require('../services/Permission.service')
 const ProntuariosService = require('../services/Prontuarios.service')
 const TratamentosService = require('../services/Tratamentos.service')
+const AlergiasService = require('../services/Alergias.service')
 
 routes.post('/permission', PermissionService.create)
 routes.get('/permission', PermissionService.index)
@@ -39,6 +40,10 @@ routes.post('/animais/prontuarios', ProntuariosService.create)
 routes.patch('/animais/prontuarios', ProntuariosService.updated)
 
 routes.post('/animais/tratamentos', TratamentosService.create)
+routes.patch('/animais/tratamentos', TratamentosService.updated)
+
+routes.post('/animais/tratamentos', AlergiasService.create)
+routes.patch('/animais/tratamentos', AlergiasService.updated)
 
 
 

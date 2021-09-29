@@ -1,14 +1,14 @@
 const Animais = require('../model/animais');
-const Tratamento = require('../model/tratamentos');
+const Alergias = require('../model/alergias');
 
 const create = async (req, res) => {
    
     const { idAnimal: _id } = req.body;
-    const tratamentos = Tratamento(req.body)
+    const alergias = Alergias(req.body)
     const updatedAnimal = await Animais.findOne({ _id })
-    updatedAnimal.tratamentos.push(tratamentos)
+    updatedAnimal.alergias.push(alergias)
     await updatedAnimal.updateOne(updatedAnimal, {new: true})
-    await tratamentos.save()
+    await alergias.save()
         .then(response => {
 
             return res.status(200).json(response)
@@ -20,13 +20,13 @@ const create = async (req, res) => {
 
 const updated = async (req, res) => {
     const { idAnimal, idDoTratamento } = req.body;
-    const tratamento = Tratamento(req.body)
+    const alergias = Alergias(req.body)
     const animail = await Animais.findById({ _id: idAnimal });
 
-    animail.tratamentos.map(el => {
+    animail.alergias.map(el => {
         if (el._id == idDoTratamento) {
-            el.descricao = tratamento.descricao || '',
-            el.tratamento = tratamento.tratamento || ''
+            el.descricao = alergias.descricao || '',
+            el.alergias = alergias.alergias || ''
         };
     });
     

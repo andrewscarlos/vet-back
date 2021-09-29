@@ -21,12 +21,9 @@ const create = async (req, res) => {
 };
 
 const updated = async (req, res) => {
-    console.log('req. body', req.body)
     const { idAnimal, idDoProntuario } = req.body;
     const prontuario = Prontuarios(req.body)
     const animail = await Animais.findById({ _id: idAnimal });
-    
-
 
     animail.prontuarios.map(el => {
         if (el._id == idDoProntuario) {
@@ -48,8 +45,7 @@ const updated = async (req, res) => {
     
     await animail.updateOne(animail, { new: true })
     return res.status(200).json({ msg: 'Atualizado com sucesso' })
-}
-
+};
 
 module.exports = {
     create,

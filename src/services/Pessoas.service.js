@@ -23,7 +23,7 @@ const show = async(req, res) =>{
 }
 
 const create = async(req, res) =>{
-    console.log(req.body)
+    
     const { email } = req.body;
     
   if(await Pessoas.findOne({ email })){

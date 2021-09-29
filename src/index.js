@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(router);
 
-
+console.log('oi')
 app.listen(port, ()=>{
     console.log(`server is running on port ${port}`)
 })

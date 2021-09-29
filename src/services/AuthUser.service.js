@@ -9,9 +9,6 @@ const generateToken = (params={}) =>{
   })
 }
 const create = async (req, res) => {
-  console.log('req', req.body)
-  
-  
   const { email, cpf } = req.body;
   if(await User.findOne({email, cpf})){
     return res.status(400).json({error: 'Ja existe um CPF ou Email cadastrado'})
