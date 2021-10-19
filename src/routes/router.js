@@ -3,14 +3,17 @@ const routes = express.Router()
 
 const authMiddleware = require('../middlewares/auth')
 
-const PessoasService = require('../services/Pessoas.service')
-const AnimaisService = require('../services/Animais.service')
-const UserService = require('../services/AuthUser.service')
-const RolesService = require('../services/Roles.service')
-const PermissionService = require('../services/Permission.service')
-const ProntuariosService = require('../services/Prontuarios.service')
-const TratamentosService = require('../services/Tratamentos.service')
-const AlergiasService = require('../services/Alergias.service')
+const PessoasService = require('../services/Pessoas.service');
+const AnimaisService = require('../services/Animais.service');
+const UserService = require('../services/AuthUser.service');
+const RolesService = require('../services/Roles.service');
+const PermissionService = require('../services/Permission.service');
+const ProntuariosService = require('../services/Prontuarios.service');
+const TratamentosService = require('../services/Tratamentos.service');
+const AlergiasService = require('../services/Alergias.service');
+const MedicamentoServive =  require('../services/Medicamento.service');
+const VacinasService =  require('../services/Vacinas.service');
+const VermifugosService =  require('../services/Vermifugo.service');
 
 routes.post('/permission', PermissionService.create)
 routes.get('/permission', PermissionService.index)
@@ -42,10 +45,17 @@ routes.patch('/animais/prontuarios', ProntuariosService.updated)
 routes.post('/animais/tratamentos', TratamentosService.create)
 routes.patch('/animais/tratamentos', TratamentosService.updated)
 
-routes.post('/animais/tratamentos', AlergiasService.create)
-routes.patch('/animais/tratamentos', AlergiasService.updated)
+routes.post('/animais/alergias', AlergiasService.create)
+routes.patch('/animais/alergias', AlergiasService.updated)
 
+routes.post('/animais/medicamentos', MedicamentoServive.create)
+routes.patch('/animais/medicamentos', MedicamentoServive.updated)
 
+routes.post('/animais/vacinas', VacinasService.create)
+routes.patch('/animais/vacinas', VacinasService.updated)
+
+routes.post('/animais/vermifugos', VermifugosService.create)
+routes.patch('/animais/vermifugos', VermifugosService.updated)
 
 
 module.exports = routes;

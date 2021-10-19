@@ -24,10 +24,10 @@ const create = async (req, res) => {
 
 const authenticate = async (req, res)=>{
   const {  email, password:senha } = req.body
-
+  console.log('req', req.body)
 
   if(!email && !senha){
-    return res.status(400).json({err: 'Credencias não enviadas'})
+    return res.status(400).json({err: 'Credencias nãooooooo enviadas'})
   }
   const user =  await User.findOne({ email }).select('+senha')
 

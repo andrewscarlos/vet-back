@@ -1,14 +1,15 @@
 const Animais = require('../model/animais');
-const Alergias = require('../model/alergias');
+const Vacinas = require('../model/vacinas');
 
 const create = async (req, res) => {
    
     const { idAnimal: _id } = req.body;
-    const alergias = Alergias(req.body)
-    const updatedAnimal = await Animais.findOne({ _id })
-    updatedAnimal.alergias.push(alergias)
-    await updatedAnimal.updateOne(updatedAnimal, {new: true})
-    await alergias.save()
+    const vacinas = Vacinas(req.body)
+    console.log('req', req.body)
+    const updateVacinas = await Animais.findOne({ _id })
+    updateVacinas.vacinas.push(vacinas)
+    await updateVacinas.updateOne(updateVacinas, {new: true})
+    await vacinas.save()
         .then(response => {
 
             return res.status(200).json(response)
@@ -19,14 +20,15 @@ const create = async (req, res) => {
 };
 
 const updated = async (req, res) => {
-    const { idAnimal, idDaAlergia } = req.body;
-    const alergias = Alergias(req.body)
+    
+    const { idAnimal, idDaVacina } = req.body;
+    const vacina = Vacinas(req.body)
     const animail = await Animais.findById({ _id: idAnimal });
 
-    animail.alergias.map(el => {
-        if (el._id == idDaAlergia) {
-            el.descricao = alergias.descricao || '',
-            el.alergias = alergias.alergias || ''
+    animail.vacinas.map(el => {
+        if (el._id == idDaVacina) {
+            el.descricao = vacina.descricao || '',
+            el.vacina = vacina.vacina || ''
         };
     });
     

@@ -1,14 +1,14 @@
 const Animais = require('../model/animais');
-const Alergias = require('../model/alergias');
+const Vermifugo = require('../model/vermifugos');
 
 const create = async (req, res) => {
-   
+    
     const { idAnimal: _id } = req.body;
-    const alergias = Alergias(req.body)
-    const updatedAnimal = await Animais.findOne({ _id })
-    updatedAnimal.alergias.push(alergias)
-    await updatedAnimal.updateOne(updatedAnimal, {new: true})
-    await alergias.save()
+    const vermifugo = Vermifugo(req.body)
+    const updatedVermifugo = await Animais.findOne({ _id })
+    updatedVermifugo.vermifugos.push(vermifugo)
+    await updatedVermifugo.updateOne(updatedVermifugo, {new: true})
+    await vermifugo.save()
         .then(response => {
 
             return res.status(200).json(response)
@@ -19,14 +19,15 @@ const create = async (req, res) => {
 };
 
 const updated = async (req, res) => {
-    const { idAnimal, idDaAlergia } = req.body;
-    const alergias = Alergias(req.body)
+  
+    const { idAnimal, idDovermifugo} = req.body;
+    const vermifugo = Vermifugo(req.body)
     const animail = await Animais.findById({ _id: idAnimal });
 
-    animail.alergias.map(el => {
-        if (el._id == idDaAlergia) {
-            el.descricao = alergias.descricao || '',
-            el.alergias = alergias.alergias || ''
+    animail.vermifugos.map(el => {
+        if (el._id == idDovermifugo) {
+            el.descricao = vermifugo.descricao || '',
+            el.vermifugo = vermifugo.vermifugo || ''
         };
     });
     
