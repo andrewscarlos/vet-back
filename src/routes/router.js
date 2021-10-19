@@ -27,7 +27,7 @@ routes.post('/register/authenticate', UserService.authenticate)
 //routes.use(authMiddleware);
 
 routes.get('/pessoas', PessoasService.index)
-routes.get('/pessoas/:id', PessoasService.show)
+routes.post('/pessoas/fetch', PessoasService.show)
 routes.post('/pessoas',PessoasService.create)
 routes.put('/pessoas/:id', PessoasService.update)
 routes.delete('/pessoas/:id', PessoasService.destroy)

@@ -11,16 +11,19 @@ const index = async(req, res) =>{
 }
 
 const show = async(req, res) =>{
-    await Pessoas.findById(req.params.id)
+    const cpf = req.body.cpf
+    console.log('req',req.body)
+    
+    await Pessoas.findOne({ cpf })
     .then(response=>{
         if (response)return res.status(200).json(response)
-        else return res.status(404).json("Id não encontrado ")
+        else return res.status(404).json("CPF não encontrado ")
     })
     .catch(error=>{
         return res.status(500).json(error)
-    })
-    
-}
+    });
+};
+
 
 const create = async(req, res) =>{
     
