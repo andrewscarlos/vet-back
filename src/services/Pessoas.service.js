@@ -32,6 +32,12 @@ const create = async(req, res) =>{
   if(await Pessoas.findOne({ email })){
     return res.status(400).json({error: 'Ja existe um cadastro com esse email'})
   }
+
+  const { cpf } = req.body;
+    
+  if(await Pessoas.findOne({ cpf })){
+    return res.status(400).json({error: 'Ja existe um cpf cadastrado'})
+  }
     const pessoas = Pessoas(req.body)
     await pessoas.save()
     .then(response => {
