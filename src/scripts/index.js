@@ -7,8 +7,8 @@ const insertPoliceAndRoles = async ()=>{
 };
 
 const createMasterUser = async ()=>{
-    const nome = 'H-vet-Resende';
-    const email = 'andrews.knct@gmail.com';
+    const nome = 'admin';
+    const email = 'admin@gmail.com';
     const senha = '123456';
     const funcao = 'Administrativo'
     try{
