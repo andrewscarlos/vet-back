@@ -12,7 +12,7 @@ const index = async(req, res) =>{
 
 const show = async(req, res) =>{
     const cpf = req.body.cpf
-    console.log('req',req.body)
+
     
     await Pessoas.findOne({ cpf })
     .then(response=>{

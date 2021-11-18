@@ -5,7 +5,7 @@ const create = async (req, res) => {
    
     const { idAnimal: _id } = req.body;
     const vacinas = Vacinas(req.body)
-    console.log('req', req.body)
+   
     const updateVacinas = await Animais.findOne({ _id })
     updateVacinas.vacinas.push(vacinas)
     await updateVacinas.updateOne(updateVacinas, {new: true})

@@ -1,5 +1,9 @@
-const express = require('express')
-const routes = express.Router()
+const express = require('express');
+const routes = express.Router();
+
+const multer = require('multer');
+const configUpload = require('../config/uploads');
+const upload = multer(configUpload);
 
 const authMiddleware = require('../middlewares/auth')
 
@@ -14,6 +18,7 @@ const AlergiasService = require('../services/Alergias.service');
 const MedicamentoServive =  require('../services/Medicamento.service');
 const VacinasService =  require('../services/Vacinas.service');
 const VermifugosService =  require('../services/Vermifugo.service');
+const UploadService = require('../services/Upload.service');
 
 routes.post('/permission', PermissionService.create)
 routes.get('/permission', PermissionService.index)
@@ -22,7 +27,10 @@ routes.post('/roles', RolesService.create)
 routes.get('/roles', RolesService.index)
 
 routes.post('/register', UserService.create)
+routes.get('/register/all', UserService.index)
 routes.post('/register/authenticate', UserService.authenticate)
+routes.patch('/userupdate', UserService.update)
+
 
 //routes.use(authMiddleware);
 
@@ -35,6 +43,7 @@ routes.delete('/pessoas/:id', PessoasService.destroy)
 
 routes.get('/animais', AnimaisService.index)
 routes.get('/animais/:id', AnimaisService.show)
+routes.put('/animais/upload/:id', upload.array('file'), UploadService.update)
 routes.post('/animais', AnimaisService.create)
 routes.put('/animais/:id', AnimaisService.update)
 routes.delete('/animais/:id', AnimaisService.destroy)

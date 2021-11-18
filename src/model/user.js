@@ -10,7 +10,7 @@ const UserSchema = new Schema({
     funcao: { type: String },
     acesso: {type: String},
     email:{type: String, required: true, },
-    senha: {type: String, required: true, select: false},
+    senha: {type: String, required: true},
     foto:{type: String},
     roles:{ type: Array }
 },{

@@ -82,7 +82,7 @@ const destroy = async (req, res) => {
 };
 
 const today = async (req, res) => {
-    console.log('bateu no today')
+    
   await Animais.find({
     createdAt: {
       $gte: startOfDay(new Date()),
