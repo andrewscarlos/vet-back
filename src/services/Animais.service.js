@@ -97,6 +97,23 @@ const today = async (req, res) => {
     });
 };
 
+const geyBydays = async (req, res) => {
+    const { dataInicial, dataFinal } =  req.body;
+    
+  await Animais.find({
+    createdAt: {
+      $gte: startOfDay(dataInicial),
+      $lte: endOfDay(dataFinal)
+    }
+  })
+    .then((response) => {
+      return res.status(200).json(response);
+    })
+    .catch((error) => {
+      return res.status(500).json(error);
+    });
+};
+
 module.exports = {
   index,
   show,
@@ -104,4 +121,5 @@ module.exports = {
   update,
   destroy,
   today,
+  geyBydays
 };
