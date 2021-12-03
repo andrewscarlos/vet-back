@@ -46,7 +46,6 @@ const create = async (req, res) => {
 
   const pessoaAtual = await pessoa.updateOne(newPeole, { new: true });
 
- 
   await animais
     .save()
     .then((response) => {
@@ -82,12 +81,11 @@ const destroy = async (req, res) => {
 };
 
 const today = async (req, res) => {
-    
   await Animais.find({
     createdAt: {
       $gte: startOfDay(new Date()),
-      $lte: endOfDay(new Date())
-    }
+      $lte: endOfDay(new Date()),
+    },
   })
     .then((response) => {
       return res.status(200).json(response);
@@ -97,16 +95,19 @@ const today = async (req, res) => {
     });
 };
 
-const geyBydays = async (req, res) => {
-    const { dataInicial, dataFinal } =  req.body;
-    
+const getBydays = async (req, res) => {
+
+  const { dataInicial, dataFinal } = req.body;
+  console.log('NEW DATE', new Date())
+  console.log('date convert', new Date(dataInicial))
   await Animais.find({
     createdAt: {
-      $gte: startOfDay(dataInicial),
-      $lte: endOfDay(dataFinal)
-    }
+      $gte: startOfDay(new Date(dataInicial)),
+      $lte: endOfDay(new Date(dataFinal)),
+    },
   })
     .then((response) => {
+      console.log('response',response)
       return res.status(200).json(response);
     })
     .catch((error) => {
@@ -121,5 +122,5 @@ module.exports = {
   update,
   destroy,
   today,
-  geyBydays
+  getBydays,
 };

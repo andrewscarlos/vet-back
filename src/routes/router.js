@@ -48,6 +48,7 @@ routes.post('/animais', AnimaisService.create)
 routes.put('/animais/:id', AnimaisService.update)
 routes.delete('/animais/:id', AnimaisService.destroy)
 routes.get('/animaistoday', AnimaisService.today)
+routes.post('/animaisdays', AnimaisService.getBydays)
 
 
 routes.post('/animais/prontuarios', ProntuariosService.create)
