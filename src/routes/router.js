@@ -28,7 +28,9 @@ routes.get('/roles', RolesService.index)
 
 routes.post('/register', UserService.create)
 routes.get('/register/all', UserService.index)
+
 routes.post('/register/authenticate', UserService.authenticate)
+
 routes.patch('/userupdate', UserService.update)
 
 

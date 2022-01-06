@@ -24,7 +24,6 @@ const show = async(req, res) =>{
     });
 };
 
-
 const create = async(req, res) =>{
     
     const { email } = req.body;
@@ -49,6 +48,7 @@ const create = async(req, res) =>{
 }
 
 const update = async(req, res) =>{
+    
     const pessoa = await Pessoas.findById(req.params.id)
 
     await pessoa.updateOne( req.body, {new: true})
@@ -59,6 +59,7 @@ const update = async(req, res) =>{
         return res.status(500).json(error)
     })
 }
+
 const destroy = async (req, res)=>{
     const pessoa = await Pessoas.findById(req.params.id)
     pessoa.remove(req.body)

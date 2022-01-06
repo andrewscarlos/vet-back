@@ -54,12 +54,19 @@ const update = async (req, res) => {
     .then((response) => {
       return res.status(200).json(response);
     })
+
+
+
+    
     .catch((error) => {
       return res.status(500).json(error);
     });
 };
 
 const authenticate = async (req, res) => {
+
+  console.log('REQUISIÇÃO', req.body)
+
   const { email, password: senha } = req.body;
 
   if (!email && !senha) {
@@ -84,3 +91,4 @@ module.exports = {
   index,
   update
 };
+
